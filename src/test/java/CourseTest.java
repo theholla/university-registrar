@@ -48,6 +48,39 @@ public class CourseTest {
     assertTrue(testCourse.equals(savedCourse));
   }
 
+  @Test
+  public void assignStudent_AssignsStudentToCourse() {
+    Course newCourse = new Course ("Math", "MTH110");
+    newCourse.save();
+    Student newStudent = new Student("Madison", "09/11/15");
+    newStudent.save();
+    newCourse.assignStudent(newStudent);
+    Student savedStudent = newCourse.getStudents().get(0);
+    assertTrue(newStudent.equals(savedStudent));
+  }
 
+  @Test
+  public void getStudents_returnsAllStudentsForCourse_ArrayList() {
+    Course myCourse = new Course("Math", "MTH110");
+    myCourse.save();
+    Student myStudent = new Student("Madison", "09/11/15");
+    myStudent.save();
+    myCourse.assignStudent(myStudent);
+    List savedStudents = myCourse.getStudents();
+    assertEquals(savedStudents.size(), 1);
+  }
+
+  @Test
+    public void delete_deletesAllAssociationsForACourse() {
+      Course myCourse = new Course("Math", "MTH110");
+      myCourse.save();
+
+      Student myStudent = new Student("Madison", "09/11/15");
+      myStudent.save();
+
+      myCourse.assignStudent(myStudent);
+      myCourse.delete();
+      assertEquals(myStudent.getCourses().size(), 0);
+    }
 
 }
