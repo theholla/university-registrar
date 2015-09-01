@@ -1,0 +1,7 @@
+<h1 class="well">Students</h1>
+
+<ol>
+#foreach ($student in $students)
+  <h2><li><a href="$student.getId()">$student.getName(), $student.getEnrollDate()</a></li></h2>
+#end
+</ol>

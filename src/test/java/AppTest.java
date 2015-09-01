@@ -24,11 +24,30 @@ public class AppTest extends FluentTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-
   @Test
   public void rootTest() {
     goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("University Registrar");
+  }
+
+  @Test
+  public void courseListIsDisplayed() {
+    goTo("http://localhost:4567/courses");
+    assertThat(pageSource()).contains("Courses");
+  }
+
+  @Test
+  public void courseIsSavedIntoDatabase() {
+    goTo("http://localhost:4567/courses");
+    fill("#course_name").with("French Literature");
+    fill("#course_number").with("LTFR100");
+    submit(".btn");
+    assertThat(pageSource()).contains("French Literature", "LTFR100");
+  }
+
+  @Test
+  public void courseIsDisplayed() {
+
   }
 
 }
