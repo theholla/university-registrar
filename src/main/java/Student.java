@@ -42,4 +42,16 @@ public class Student {
              this.getId() == newStudent.getId();
     }
   }
+
+  public void save() {
+    String sql = "INSERT INTO students (name, enroll_date) VALUES (:name, :enroll_date)";
+    try(Connection con = DB.sql2o.open()) {
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", name)
+        .addParameter("enroll_date", enroll_date)
+        .executeUpdate()
+        .getKey();
+
+    }
+  }
 }
