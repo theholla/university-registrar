@@ -3,7 +3,7 @@
 #if($courses.size() !=0)
   <ol>
   #foreach ($course in $courses)
-    <h2><li><a href="/$course.getId()">$course.getCourseName(), $course.getCourseNumber()</li></a></h2>
+    <h4><li><a href="/courses/$course.getId()">$course.getCourseName(), $course.getCourseNumber()</li></a></h4>
   #end
   </ol>
   #else
@@ -18,7 +18,7 @@
       </div>
 
       <div class="form-group">
-        <label class"sr-only" for="course_number">Course Number</label>
+        <label for="course_number">Course Number</label>
         <input id="course_number" name="course_number" type="text" placeholder="LTFR103">
       </div>
 

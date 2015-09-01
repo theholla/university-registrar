@@ -31,6 +31,12 @@ public class AppTest extends FluentTest {
   }
 
   @Test
+  public void navBarTest() {
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("View and Add Courses");
+  }
+
+  @Test
   public void courseListIsDisplayed() {
     goTo("http://localhost:4567/courses");
     assertThat(pageSource()).contains("Courses");
@@ -46,8 +52,20 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void courseIsDisplayed() {
+  public void courseIsDisplayedOnCoursesPage() {
+    Course myCourse = new Course("Calculus", "CALC200");
+    myCourse.save();
+    goTo("http://localhost:4567/courses");
+    assertThat(pageSource()).contains("Calculus", "CALC200");
+  }
 
+  @Test
+  public void courseIsDisplayedOnItsPage() {
+    Course myCourse = new Course("Calculus", "CALC200");
+    myCourse.save();
+    String coursePath = String.format("http://localhost:4567/courses/%d", myCourse.getId());
+    goTo(coursePath);
+    assertThat(pageSource()).contains("Calculus", "CALC200");
   }
 
 }
