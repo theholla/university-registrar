@@ -10,17 +10,19 @@
   <p>There are no courses in your list yet. Add your first course!</p>
 #end
 
+<hr/>
+
 <h3>Add a new course</h3>
   <form action="/courses" method="post">
       <div class="form-group">
-        <label for="course_name">Course Name</label>
+        <label for="course_name">Course Name: </label>
         <input id="course_name" name="course_name" type="text" placeholder="French Literature">
       </div>
 
       <div class="form-group">
-        <label for="course_number">Course Number</label>
+        <label for="course_number">Course Number: </label>
         <input id="course_number" name="course_number" type="text" placeholder="LTFR103">
       </div>
 
-      <button type="submit" class="btn btn-primary btn-lg">Add new course</button>
+      <button type="submit" class="btn btn-primary">Add new course</button>
   </form>
