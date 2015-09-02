@@ -3,10 +3,10 @@
 #if($courses.size() !=0)
   <ol>
   #foreach ($course in $courses)
-    <h4><li><a href="/courses/$course.getId()">$course.getCourseName(), $course.getCourseNumber()</li></a></h4>
+    <h4><li><a href="/courses/$course.getId()">$course.getCourseName()</a>, $course.getCourseNumber()</li></h4>
   #end
   </ol>
-  #else
+#else
   <p>There are no courses in your list yet. Add your first course!</p>
 #end
 
@@ -24,5 +24,5 @@
         <input id="course_number" name="course_number" type="text" placeholder="LTFR103">
       </div>
 
-      <button type="submit" class="btn btn-primary">Add new course</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
   </form>
