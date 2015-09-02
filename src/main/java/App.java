@@ -51,6 +51,7 @@ public class App {
       Course course = Course.find(id);
       model.put("course", course);
       model.put("students", course.getStudents());
+      model.put("allStudents", Student.all());
       model.put("template", "templates/course.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -78,17 +79,22 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    /* Individual course --> POST a new student (displays on course view) */
+    /* Individual student --> POST a new course for this student*/
+
+
+    /* Individual course --> POST a student to the course (displays on course view) */
     post("/courses/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Course course = Course.find(Integer.parseInt(request.params("id")));
+      Student student = Student.find(Integer.parseInt(request.queryParams("id")));
       model.put("course", course);
-      String name = request.queryParams("name");
-      String enroll_date = request.queryParams("enroll_date");
-      Student newStudent = new Student(name, enroll_date);
-      newStudent.save();
-      course.assignStudent(newStudent);
-      response.redirect("/courses/" + request.params(":id"));
+      model.put("student", student);
+      //String name = request.queryParams("name");
+      //String enroll_date = request.queryParams("enroll_date");
+      //Student newStudent = new Student(name, enroll_date);
+      //newStudent.save();
+      course.assignStudent(student);
+      response.redirect("/courses/" + request.params(":name"));
       return null;
     });
 

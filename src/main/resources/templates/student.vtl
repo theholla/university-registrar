@@ -1,30 +1,45 @@
 #if($courses.size() != 0)
   <h2>$student.getName() is currently enrolled in the following courses:</h2>
-  <h5>Please click on a course name to for...some reason:</h5>
   <ul>
-    #foreach($course in $courses)
-      <li><a href="/courses/$course.getId()">$course.getCourseName()</a>, $course.getCourseNumber()</li>
-    #end
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Course Name</th>
+          <th>Course Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          #foreach ($course in $courses)
+          <tr>
+            <td><a href="/course/$course.getId()">$course.getCourseName()</a></td>
+            <td>$course.getCourseNumber()</td>
+            <td>
+              <a href="" class="btn btn-danger">Drop This Course</a>
+            </td>
+          </tr>
+          #end
+      </tbody>
+    </table>
   </ul>
 #else
   <h2>This student is currently enrolled in 0 courses.</h2>
 #end
 
-<h3>Assign this student to a new course:</h3>
+<h3>Assign this student to a course:</h3>
 
 <form action="/students/$student.getId()" method="post">
   <div class="form-group">
     <label for="course_name">Course Name</label>
-    <input id="course_name" name="course_name" type="text" placeholder="French Lit">
+    <select id="course_name" name="course_name" type='text'>
+    #foreach($course in $courses)
+      <option value="$course.getId()">$course.getCourseNumber(): $course.getCourseName()</option>
+    #end
+    </select>
   </div>
-
-  <div class="form-group">
-    <label for="course_number">Course Number</label>
-    <input id="course_number" name="course_number" type="text" placeholder="LTFR101">
-  </div>
-
-  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
 <hr/>
 
 <h4>Update this student information:</h4>
