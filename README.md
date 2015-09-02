@@ -17,12 +17,12 @@ Administrators can add students to courses, and courses to students.
 
 **In PSQL:**
 
-CREATE DATABASE university_registrar;
-\c university_registrar;
-CREATE TABLE courses (id SERIAL PRIMARY KEY, course_name VARCHAR(50), course_number VARCHAR(15));
-CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR(50), enroll_date VARCHAR(25));
-CREATE TABLE courses_students (id SERIAL PRIMARY KEY, course_id INT, student_id INT);
-CREATE DATABASE university_registrar_test WITH TEMPLATE university_registrar;
+*CREATE DATABASE university_registrar;
+*\c university_registrar;
+*CREATE TABLE courses (id SERIAL PRIMARY KEY, course_name VARCHAR(50), course_number VARCHAR(15));
+*CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR(50), enroll_date VARCHAR(25));
+*CREATE TABLE courses_students (id SERIAL PRIMARY KEY, course_id INT, student_id INT);
+*CREATE DATABASE university_registrar_test WITH TEMPLATE university_registrar;
 
 ## Technologies Used
 
