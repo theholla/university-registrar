@@ -1,56 +1,72 @@
-#if($students.size() != 0)
-  <h2>These students are currently enrolled in $course.getCourseName():</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Student Name</th>
-            <th>Student ID</th>
-            <th>Enrollment Date</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-            #foreach ($student in $students)
+<div>
+    <h1 class="well">$course.getCourseNumber(): $course.getCourseName()</h1>
+    <p>This course will cover the basics of stin eu nostrud. Bacon ipsum dolor
+      amet aliqua non tempor nisi lorem. Tail nulla tempor quis chuck, aliqua
+      sirloin non. Ham hock beef pig, incididunt aliquip dolor commodo t-bone
+      tri-tip dolore. Tongue chicken boudin pork chop corned beef excepteur capicola
+      ball tip cupim pork.</p>
+
+</h3>
+</div>
+
+<div>
+  #if($students.size() != 0)
+    <h2>Current enrollment:</h2>
+        <table class="table table-hover">
+          <thead>
             <tr>
-              <td><a href="/students/$student.getId()">$student.getName()</a></td>
-              <td>$student.getId()</td>
-              <td>$student.getEnrollDate()</td>
-              <td>
-                <a href="" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-              </td>
+              <th>Student Name</th>
+              <th>Student ID</th>
+              <th>Enrollment Date</th>
+              <th></th>
             </tr>
+          </thead>
+          <tbody>
+              #foreach ($student in $students)
+              <tr>
+                <td><a href="/students/$student.getId()">$student.getName()</a></td>
+                <td>$student.getId()</td>
+                <td>$student.getEnrollDate()</td>
+                <td>
+                  <a href="" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                </td>
+              </tr>
+              #end
+          </tbody>
+        </table>
+  #else
+    <h2>There are 0 students enrolled in this course.</h2>
+  #end
+</div>
+
+<hr/>
+
+<div>
+  <h3>Roster looking bare? Assign a student to this course:</h3>
+
+  <form action="/courses/$course.getId()" method="post">
+    <div class="form-group">
+        <label for="name">Student Name</label>
+        <select id="name" name="name" type='text'>
+            #foreach($student in $allStudents)
+              <option value="$student.getName()">$student.getName(), $student.getEnrollDate()</option>
             #end
-        </tbody>
-      </table>
-#else
-  <h2>There are 0 students enrolled in this course.</h2>
-#end
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+  </form>
+</div>
 
 <hr/>
 
-<h3>Assign a student to this course:</h3>
+<div>
+  <h4>Update information for this course:</h4>
+  <p>Course name: $course.getCourseName()</p>
+  <p>Course number: $course.getCourseNumber()</p>
 
-<form action="/courses/$course.getId()" method="post">
-  <div class="form-group">
-      <label for="name">Student Name</label>
-      <select id="name" name="name" type='text'>
-          #foreach($student in $allStudents)
-            <option value="$student.getName()">$student.getName(), $student.getEnrollDate()</option>
-          #end
-      </select>
-  </div>
-  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-</form>
-
-<hr/>
-
-
-<h4>Update information for this course:</h4>
-<p>Course name: $course.getCourseName()</p>
-<p>Course number: $course.getCourseNumber()</p>
-
-<form action="/courses/$course.getId()/update" method="post">
-  <label for="course_name">New Course name</label>
-  <input id="course_name" name="course_name" type="text" placeholder="Cool French Lit">
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+  <form action="/courses/$course.getId()/update" method="post">
+    <label for="course_name">New Course name</label>
+    <input id="course_name" name="course_name" type="text" placeholder="Cool French Lit">
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

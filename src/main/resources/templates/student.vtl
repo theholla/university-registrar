@@ -1,51 +1,55 @@
-#if($courses.size() != 0)
-  <h2>$student.getName() is currently enrolled in the following courses:</h2>
-  <ul>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Course Name</th>
-          <th>Course Number</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-          #foreach ($course in $courses)
+<div>
+  #if($courses.size() != 0)
+    <h2>$student.getName() is currently enrolled in the following courses:</h2>
+      <table class="table table-hover">
+        <thead>
           <tr>
-            <td><a href="/course/$course.getId()">$course.getCourseName()</a></td>
-            <td>$course.getCourseNumber()</td>
-            <td>
-              <a href="" class="btn btn-danger">Drop This Course</a>
-            </td>
+            <th>Course Name</th>
+            <th>Course Number</th>
+            <th></th>
           </tr>
-          #end
-      </tbody>
-    </table>
-  </ul>
-#else
-  <h2>This student is currently enrolled in 0 courses.</h2>
-#end
+        </thead>
+        <tbody>
+            #foreach ($course in $courses)
+            <tr>
+              <td><a href="/courses/$course.getId()">$course.getCourseName()</a></td>
+              <td>$course.getCourseNumber()</td>
+              <td>
+                <a href="" class="btn btn-danger">Drop This Course</a>
+              </td>
+            </tr>
+            #end
+        </tbody>
+      </table>
+  #else
+    <h2>This student is currently enrolled in 0 courses.</h2>
+  #end
+</div>
 
-<h3>Assign this student to a course:</h3>
+<div>
+  <h3>Assign this student to a course:</h3>
 
-<form action="/students/$student.getId()" method="post">
-  <div class="form-group">
-    <label for="course_name">Course Name</label>
-    <select id="course_name" name="course_name" type='text'>
-    #foreach($course in $courses)
-      <option value="$course.getId()">$course.getCourseNumber(): $course.getCourseName()</option>
-    #end
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  <form action="/students/$student.getId()" method="post">
+    <div class="form-group">
+      <label for="course_name">Course Name</label>
+      <select id="course_name" name="course_name" type='text'>
+      #foreach($course in $allCourses)
+        <option value="$course.getId()">$course.getCourseNumber(): $course.getCourseName()</option>
+      #end
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 
 <hr/>
 
-<h4>Update this student information:</h4>
+<div>
+  <h4>Update this student information:</h4>
 
-<form action="/students/$student.getId()/update" method="post">
-  <label for="name">New student name</label>
-  <input id="name" name="name" type="text" placeholder="Susie">
-  <button type="submit" class="btn btn-success">Submit</button>
-</form>
+  <form action="/students/$student.getId()/update" method="post">
+    <label for="name">New student name</label>
+    <input id="name" name="name" type="text" placeholder="Susie">
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

@@ -1,11 +1,24 @@
 <h1 class="well">Students</h1>
 
 #if($students.size() !=0)
-  <ol>
-    #foreach ($student in $students)
-    <h4><li><a href="/students/$student.getId()">$student.getName()</a>, enrollment date: $student.getEnrollDate()</li></h4>
-    #end
-  </ol>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Student Id</th>
+          <th>Student Name</th>
+          <th>Enrollment Date</th>
+        </tr>
+      </thead>
+      <tbody>
+          #foreach ($student in $students)
+          <tr>
+            <td>$student.getId()</td>
+            <td><a href="/students/$student.getId()">$student.getName()</a></td>
+            <td>$student.getEnrollDate()</td>
+          </tr>
+          #end
+      </tbody>
+    </table>
 #else
   <p>There are 0 students enrolled in this course.</p>
 #end

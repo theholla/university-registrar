@@ -73,14 +73,12 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       Student student = Student.find(id);
+      model.put("allCourses", Course.all());
       model.put("student", student);
       model.put("courses", student.getCourses());
       model.put("template", "templates/student.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
-
-    /* Individual student --> POST a new course for this student*/
-
 
     /* Individual course --> POST a student to the course (displays on course view) */
     post("/courses/:id", (request, response) -> {
