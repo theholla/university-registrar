@@ -86,7 +86,9 @@ public class App {
       Course course = Course.find(Integer.parseInt(request.params("id")));
       Student student = Student.find(Integer.parseInt(request.queryParams("id")));
       model.put("course", course);
-      model.put("student", student);
+      //model.put("student", student);
+      model.put("students", course.getStudents());
+      model.put("allStudents", Student.all());
       //String name = request.queryParams("name");
       //String enroll_date = request.queryParams("enroll_date");
       //Student newStudent = new Student(name, enroll_date);
