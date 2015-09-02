@@ -3,11 +3,11 @@
   <h5>Please click on a student to update student's information or to remove them from this course:</h5>
   <ul>
     #foreach($student in $students)
-      <li><a href="/students/$student.getId()/update">$student.getName()</a>, $student.getEnrollDate()</li>
+      <li><a href="/students/$student.getId()">$student.getName()</a>, $student.getEnrollDate()</li>
     #end
   </ul>
 #else
-  <h2>No students are enrolled in this course yet. Add the first student!</h2>
+  <h2>There are 0 students enrolled in this course.</h2>
 #end
 
 <hr/>

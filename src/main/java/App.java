@@ -44,8 +44,19 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    /* Courses list --> view individual course */
+    get("/courses/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Course course = Course.find(id);
+      model.put("course", course);
+      model.put("students", course.getStudents());
+      model.put("template", "templates/course.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     /* Student list --> POST a new student (displays on student list view) */
-    post("/students", (request, reponse) -> {
+    post("/students/new", (request, reponse) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       String name = request.queryParams("name");
       String enroll_date = request.queryParams("enroll_date");
@@ -56,14 +67,14 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    /* Courses list --> view individual course */
-    get("/courses/:id", (request, response) -> {
+    /* Student list && Course page --> view individual student */
+    get("/students/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
-      Course course = Course.find(id);
-      model.put("course", course);
-      model.put("students", course.getStudents());
-      model.put("template", "templates/course.vtl");
+      Student student = Student.find(id);
+      model.put("student", student);
+      model.put("courses", student.getCourses());
+      model.put("template", "templates/student.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 

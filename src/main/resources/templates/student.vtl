@@ -3,11 +3,11 @@
   <h5>Please click on a course name to for...some reason:</h5>
   <ul>
     #foreach($course in $courses)
-      <li><a href="/courses/$course.getId()/update">$course.getCourseName()</a>, $course.getCourseNumber()</li>
+      <li><a href="/courses/$course.getId()">$course.getCourseName()</a>, $course.getCourseNumber()</li>
     #end
   </ul>
 #else
-  <h2>This student is not enrolled in any courses yet. Add the first course!</h2>
+  <h2>This student is currently enrolled in 0 courses.</h2>
 #end
 
 <h3>Assign this student to a new course:</h3>
@@ -23,7 +23,7 @@
     <input id="course_number" name="course_number" type="text" placeholder="LTFR101">
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg">Add new course</button>
+  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
 </form>
 <hr/>
 
