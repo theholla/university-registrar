@@ -10,19 +10,26 @@ Administrators can add students to courses, and courses to students.
 
 ## Setup
 
-* Please have all Java developer tools ready, including the JDK
-* You'll need Gradle or some other way to run and compile Java
-* This app uses Spark and Velocity for coordinating its front end
-* You may use the database included with this file. Otherwise, create your own using the following information:
+* Please have all Java developer tools ready, including the JDK.
+* You'll need to be able to run and compile Java. This app uses Gradle for that purpose.
+* This app uses Apache Spark and Velocity to handle its user interface.
 
-**In PSQL:**
+**To use the database included with this file, follow these instructions:**
 
-*CREATE DATABASE university_registrar;
-*\c university_registrar;
-*CREATE TABLE courses (id SERIAL PRIMARY KEY, course_name VARCHAR(50), course_number VARCHAR(15));
-*CREATE TABLE students (id SERIAL PRIMARY KEY, name VARCHAR(50), enroll_date VARCHAR(25));
-*CREATE TABLE courses_students (id SERIAL PRIMARY KEY, course_id INT, student_id INT);
-*CREATE DATABASE university_registrar_test WITH TEMPLATE university_registrar;
+* Clone this git repository on your computer ```git clone https://github.com/theholla/university-registrar.git```
+* In terminal, start the PostgreSQL server by typing ```postgres``` and ```psql```
+* In psql, create a new database by typing ```CREATE DATABASE university_registrar;```
+* If you're planning to run tests, you can also create a new test database by typing ```CREATE DATABASE university_registrar_test WITH TEMPLATE university_registrar```
+
+
+* In another tab in terminal, connect to this project folder: ```cd path/to/this/folder```
+* Dump the database information from my sql file into your local database by typing the following code: ```university_registar < university_registrar.sql```
+* To run tests, you can also type ```university_registar_test < university_registrar_test.sql```
+
+
+## Database Schema
+
+<img src="/src/main/resources/public/img/sql_schema.png">
 
 ## Technologies Used
 
