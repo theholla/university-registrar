@@ -1,4 +1,4 @@
-# To Do List - with database
+# University Registrar with PostgreSQL database
 
 ##### A university registrar. September 1, 2015.
 
