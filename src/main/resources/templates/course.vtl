@@ -20,7 +20,7 @@
             </tr>
           </thead>
           <tbody>
-              #foreach ($student in $students)
+              #foreach ($student in $course.getStudents())
               <tr>
                 <td><a href="/students/$student.getId()">$student.getName()</a></td>
                 <td>$student.getId()</td>
@@ -44,6 +44,7 @@
 
   <form action="/courses/$course.getId()" method="post">
     <div class="form-group">
+      <input id="course_id" name="course_id" type="hidden" value="$course.getId()">
         <label for="name">Student Name</label>
         <select id="name" name="name" type='text'>
             #foreach($student in $allStudents)

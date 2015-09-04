@@ -6,13 +6,13 @@
 
 ## Description
 
-Administrators can add students to courses, and courses to students.
+Administrators can assign students to courses, and courses to students. This is stored in a local database.
 
 ## Setup
 
 * Please have all Java developer tools ready, including the JDK.
-* You'll need to be able to run and compile Java. This app uses Gradle for that purpose.
 * This app uses Apache Spark and Velocity to handle its user interface.
+* You'll need to be able to run and compile Java. This app uses Gradle for that purpose. To run this project, first setup the local database. Then connect to this folder in terminal and type ```gradle run```.
 
 **To use the database included with this file, follow these instructions:**
 
@@ -20,7 +20,7 @@ Administrators can add students to courses, and courses to students.
 * In terminal, start the PostgreSQL server by typing ```postgres``` and ```psql```
 * In psql, create a new database by typing ```CREATE DATABASE university_registrar;```
 * In another tab in terminal, connect to this project folder: ```cd path/to/this/folder```
-* Dump the database information from my sql file into your local database by typing the following code: ```university_registar < university_registrar.sql```
+* In this tab, dump the database information from my sql file into your local database by typing the following code: ```psql university_registrar < university_registrar.sql```
 
 * To run tests, you can create a new test database in psql: ```CREATE DATABASE university_registrar_test WITH TEMPLATE university_registrar;```
 

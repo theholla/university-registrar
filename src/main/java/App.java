@@ -84,19 +84,24 @@ public class App {
     post("/courses/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Course course = Course.find(Integer.parseInt(request.params("id")));
-      Student student = Student.find(Integer.parseInt(request.queryParams("id")));
       model.put("course", course);
-      //model.put("student", student);
-      model.put("students", course.getStudents());
-      model.put("allStudents", Student.all());
-      //String name = request.queryParams("name");
-      //String enroll_date = request.queryParams("enroll_date");
-      //Student newStudent = new Student(name, enroll_date);
-      //newStudent.save();
-      course.assignStudent(student);
-      response.redirect("/courses/" + request.params(":name"));
+      //model.put("students", Student.all());
+      String name = request.queryParams("name");
+      String enrollDate = request.queryParams("enroll_date");
+      Student newStudent = new Student(name, enrollDate);
+      newStudent.save();
+      course.assignStudent(newStudent);
+      response.redirect("/courses/" + request.params(":id"));
       return null;
     });
+
+
+
+
+
+
+
+
 
   }
 }
