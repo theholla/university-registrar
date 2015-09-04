@@ -49,6 +49,7 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       Course course = Course.find(id);
+      Student student = Student.find(id);
       model.put("course", course);
       model.put("students", course.getStudents());
       model.put("allStudents", Student.all());
@@ -85,16 +86,18 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Course course = Course.find(Integer.parseInt(request.params("id")));
       model.put("course", course);
-      //model.put("students", Student.all());
+      model.put("students", Student.all());
+
+      /* The next block creates a new student from each select. Instead, find the id of the first student.*/
       String name = request.queryParams("name");
       String enrollDate = request.queryParams("enroll_date");
       Student newStudent = new Student(name, enrollDate);
       newStudent.save();
       course.assignStudent(newStudent);
+
       response.redirect("/courses/" + request.params(":id"));
       return null;
     });
-
 
 
 

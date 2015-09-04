@@ -103,8 +103,8 @@ ALTER SEQUENCE courses_students_id_seq OWNED BY courses_students.id;
 
 CREATE TABLE students (
     id integer NOT NULL,
-    name character varying(50),
-    enroll_date character varying(25)
+    name character varying,
+    enroll_date character varying
 );
 
 
@@ -164,7 +164,7 @@ COPY courses (id, course_name, course_number) FROM stdin;
 -- Name: courses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('courses_id_seq', 1, false);
+SELECT pg_catalog.setval('courses_id_seq', 19, true);
 
 
 --
@@ -179,7 +179,7 @@ COPY courses_students (id, course_id, student_id) FROM stdin;
 -- Name: courses_students_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('courses_students_id_seq', 1, false);
+SELECT pg_catalog.setval('courses_students_id_seq', 15, true);
 
 
 --
@@ -194,7 +194,7 @@ COPY students (id, name, enroll_date) FROM stdin;
 -- Name: students_id_seq; Type: SEQUENCE SET; Schema: public; Owner: Guest
 --
 
-SELECT pg_catalog.setval('students_id_seq', 1, false);
+SELECT pg_catalog.setval('students_id_seq', 39, true);
 
 
 --
