@@ -19,12 +19,10 @@ Administrators can add students to courses, and courses to students.
 * Clone this git repository on your computer ```git clone https://github.com/theholla/university-registrar.git```
 * In terminal, start the PostgreSQL server by typing ```postgres``` and ```psql```
 * In psql, create a new database by typing ```CREATE DATABASE university_registrar;```
-* If you're planning to run tests, you can also create a new test database by typing ```CREATE DATABASE university_registrar_test WITH TEMPLATE university_registrar```
-
-
 * In another tab in terminal, connect to this project folder: ```cd path/to/this/folder```
 * Dump the database information from my sql file into your local database by typing the following code: ```university_registar < university_registrar.sql```
-* To run tests, you can also type ```university_registar_test < university_registrar_test.sql```
+
+* To run tests, you can create a new test database in psql: ```CREATE DATABASE university_registrar_test WITH TEMPLATE university_registrar;```
 
 
 ## Database Schema
